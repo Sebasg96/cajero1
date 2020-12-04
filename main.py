@@ -1,3 +1,5 @@
+from .db import *
+from .models import *
 from db.user_db import UserInDB
 from db.user_db import update_user, get_user
 from db.transaction_db import TransactionInDB
@@ -8,6 +10,10 @@ import datetime
 from fastapi import FastAPI, HTTPException
 
 api = FastAPI()
+
+@api.get("/")
+async def home():
+    return {"message": "welcome to your ATM"}
 
 @api.post("/user/auth/")
 async def auth_user(user_in: UserIn):
